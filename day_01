@@ -1,0 +1,20 @@
+            <div class="dots-container">
+                <div class="ct3-inf">
+                    <div class="imge"><img src="img/ct3-inf1.jpg" alt=""></div>
+                    <ul class="text-list">
+                        <h2>Free food, drinks & more</h2>
+                        <p>Redeem your Stars for favorites like a handcrafted<br>cold brew, protein box or even a coffee tumbler.</p>
+                        <ul class="dot-button">
+                            <li><button class="prev"></button></li>
+                            <li><button class="dot"></button></li>
+                            <li><button class="dot"></button></li>
+                            <li><button class="dot"></button></li>
+                            <li><button class="next"><svg aria-hidden="true" class="valign-middle absoluteCenter" focusable="false" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" style="width: 30px; height: 30px; overflow: visible; fill: currentcolor;"><path d="M8.902 17.656c-.293.293-.293.768 0 1.06.293.294.768.294 1.06 0L16.38 12.3c.293-.293.293-.768 0-1.06L9.86 4.72c-.293-.293-.767-.293-1.06 0-.293.293-.293.767 0 1.06l5.99 5.99L8.9 17.656z"></path><circle class="sb-icon-hover" cx="50%" cy="50%" fill="transparent" r="75%"></circle></svg></button></li>
+                        </ul>
+                    </ul>
+                </div>
+                <button class="close"><svg aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" style="width: 24px; height: 24px; overflow: visible; fill: currentcolor;"><path d="M13.06 12l5.72-5.72c.292-.292.292-.767 0-1.06-.294-.293-.768-.293-1.06 0L12 10.94 6.28 5.22c-.293-.293-.767-.293-1.06 0-.293.293-.293.768 0 1.06L10.94 12l-5.72 5.72c-.293.292-.293.767 0 1.06.146.146.338.22.53.22s.384-.074.53-.22L12 13.06l5.72 5.72c.145.146.337.22.53.22.19 0 .383-.074.53-.22.292-.293.292-.768 0-1.06L13.06 12z"></path></svg></button>
+            </div>
+
+오늘은 position: fixed; 를 활용하여 버튼을 눌렀을때 화면 한가운데 창이 뜨는 작업을 해보았다 창안에 dot라는 점들을 만들어주고 설정하는게 은근 시간이 오래걸렸다 
+이 창은 prev 와 next로 양옆으로 넘길수가 있는데 여기서부터 자바스크립트를 써야할것같다
