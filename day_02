@@ -1,0 +1,30 @@
+    let planet = "earth"; 
+    
+    // ""를 붙이지 않아 작동하지않았음
+
+    alert(`hello, ${planet}!`);   
+
+    // 큰따옴표: "Hello"
+    // 작은따옴표: 'Hello'
+    // 역 따옴표(백틱, backtick): `Hello` 구분이 헷갈린다.
+
+    let age = prompt('나이를 입력해주세요.', 100);
+
+    alert(`당신의 나이는 ${age}살 입니다.`); // 당신의 나이는 100살입니다.
+
+    // 여기에 퀴즈 정답을 설정하세요.
+    let correctAnswer = "50";  // 예: "42"
+
+    // 사용자에게 질문을 던집니다.
+    let userAnswer = prompt("퀴즈: '정답은?'");  // 예: '어떤 수의 답은?'
+
+
+    if (userAnswer === correctAnswer) {
+        alert("정답입니다!");   
+    } else if (userAnswer === null) {
+        alert("퀴즈를 취소하셨습니다.");
+    } else {
+        alert("X");
+    }
+
+    // 챗GPT 도움을 받으며 예제를 퀴즈식으로 해보는중
