@@ -1,3 +1,5 @@
+    // alert, prompt, confirm   상호 작용을 공부중.
+
     let planet = "earth"; 
     
     // ""를 붙이지 않아 작동하지않았음
