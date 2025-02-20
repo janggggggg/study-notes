@@ -1,0 +1,23 @@
+        for(let i = 0; i < 10;  i++ ){
+            if( i % 2 == 0 ) continue;{
+                alert(i);
+            }
+        }
+
+    // (i % 2 == 0)과 (i % 2) 짝수와 홀수검사 코드
+
+        let i = 0;
+        while(i < 3){
+            alert(`number${i}!`);
+            i++;
+        }
+
+        let num;
+
+        do {
+          num = prompt("100을 초과하는 숫자를 입력해주세요.", 0);
+        } while (num <= 100 && num);
+
+    //do while문으로 조건을 만족할 때까지 계속해서 입력을 받는 반복문을 만들기.
+    // null이 0이기에 2번째 num가 있어야함 null일경우 num <= 100 가 true 가 되기때문.
+    // 그 밖에 소수만 출력하는것도 보고있는데 어디에 쓰는지 아직 잘모르겠다.
