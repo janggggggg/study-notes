@@ -1,0 +1,55 @@
+        let value = browser;
+        
+        if ( value === "Edge" ){
+            alert("Edge를 사용하고 계시네요!");
+            break;
+        }else if( value === "Chrome"
+            || value === "Firefox"
+            || value === "Safari"
+            || value === "Opera"){
+            alert("저희 서비스가 지원하는 브라우저를 사용하고 계시네요.");
+            break;
+        }else{
+            alert("현재 페이지가 괜찮아 보이길 바랍니다!");
+        }
+
+    // switch 문을 if..else문으로 변환해 보는 연습을 했다. 
+    // break; 를 쓸필요가 없었다.
+    // 또 let value = browser; 이부분 처럼 선언을 딱히 할 필요가 없었다 이미 browser가 선언된 예시였다.
+
+        let a = +prompt("a?",'');
+        switch(a){
+            case 0 :
+                alert("0");
+                break;
+
+            case 1 :
+                alert("1");
+                break;
+
+            case 2 :
+            case 3 :
+                alert("2,3");
+                break;
+            }
+    
+    // 추가될 switch문을 대비해 마지막 case 아래에도 break; 를 써놓자.
+
+    // 리턴문에 쓰는 접두어 
+        showMessage(..)     // 메시지를 보여줌
+        getAge(..)          // 나이를 나타내는 값을 얻고 그 값을 반환함
+        calcSum(..)         // 합계를 계산하고 그 결과를 반환함
+        createForm(..)      // form을 생성하고 만들어진 form을 반환함
+        checkPermission(..) // 승인 여부를 확인하고 true나 false를 반환함
+
+    // 리턴문에서 반환된 값은 리턴문 밖에서 사용하는것.
+
+    function min(a, b) {
+        if (a < b) {
+            return a;
+        }else {
+            return b;
+        }
+    }
+
+    // 함수부분이 굉장히 어렵게 느껴진다. 공부를 더 해야할것같다.
