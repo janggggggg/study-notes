@@ -1,0 +1,22 @@
+// 포트폴리오로 만들겸 연습하고 있는 사이트에 동적으로 구현해야하는 부분이 나와서 이걸 챗GPT를 활용하여 코드를 분석하고 공부하는중.
+//   코드는 따 왔지만 이해가 안되는부분이 너무 많기에 이부분만 세세히 공부하는데도 2주는 걸릴듯 싶다.
+//  오늘은 forEach 문에서 index === currentIndex 를 활용하여 화면 전환시 알아서 스타일링이 되는 구도를 이해헀다.
+
+let currentIndex = 0; // 현재 표시되는 .dots-container의 인덱스
+
+    const dotsContainers = document.querySelectorAll('.dots-container');
+    const dots = document.querySelectorAll('.dot');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    const closeButtons = document.querySelectorAll('.close');
+    
+    // .dot의 상태 업데이트 함수
+    function updateDots() {
+        dots.forEach((dot, index) => {
+            if (index === currentIndex) {
+                dot.classList.add('active'); // 현재 인덱스의 dot을 활성화
+            } else {
+                dot.classList.remove('active'); // 나머지 dot은 비활성화
+            }
+        });
+    }
