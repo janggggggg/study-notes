@@ -1,0 +1,46 @@
+let runningTotal = 0;   // 총합
+let buffer = "0";       // 입력하는숫자나 값을 임시 저장 ,문자열로 해놔야 이어 붙여 저장됨
+let previousOperator;   // 이전 연산자
+
+const screen = document.querySelector('.screen');
+
+function buttonClick(value){    // 클릭한거 처리해주는 함수
+    if(isNaN(value)){
+        handleSymbol(value);    // 숫자 아닐시 플마곱나 이런거
+    }else{                              
+        handleNumber(value);    // 숫자면 ㅇㅇ
+    }
+    screen.innerText = buffer;  // screen(0) 부분에 값이 바뀌면 그 값으로 저장
+}
+
+function handleSymbol(symbol){
+    switch(symbol){
+        case 'C':
+            buffer = '0';
+            runningTotal = 0;
+            break;              // C: 초기화버튼 
+        case '=':
+            if(previousOperator === null){      // 이전 연산자가 없으면 그대로 반환.
+                return
+            }
+            flushOperation(parseInt(buffer));   // buffer에 있는 값을 정수로 변환하여 계산을 실행하는 함수
+            previousOperator = null;
+            buffer = runningTotal;
+            break;
+        case '←':
+            if(buffer.length ===1){
+                buffer = '0';
+            }else{
+                buffer = buffer.substring(0, buffer.length - 1); // 0번째부터 마지막자른 값만 나옴.
+            }
+            break;
+        case '+':
+        case '-':
+        case '×':
+        case '÷':
+            handleMath(symbol);
+            break;    
+    }
+}
+
+// 일단 코드를 직접 짤 정돈 아니여서 코드를 가져와서 한땀한땀 이해하는중.
