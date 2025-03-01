@@ -1,0 +1,30 @@
+// 달력을 구현하려고 달력 코드를 보는데 답이없어서 달력관련 코드들을 찾아 공부중.
+
+
+let date = new Date(2012,1,20,3,12);
+
+alert(date);
+
+function getWeekDay(date) {
+    let days = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+  
+    return days[date.getDay()];
+  }
+  
+  let date = new Date(2014, 0, 3); // 2014년 1월 3일
+  alert( getWeekDay(date) ); // FR
+
+function getLocalDay(date){
+    let day = date.getDay();
+    if(day === 0){
+        day = 7;
+    }
+    return day;
+}
+
+function getDateAgo(date, days) {
+    date.setDate(date.getDate() - days);
+    return date.getDate();
+  }
+
+// https://ko.javascript.info/date에서 공부하고 나온 문제 풀어보는데 아직 너무 어렵게 느껴짐;;
