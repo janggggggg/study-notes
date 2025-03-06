@@ -199,3 +199,104 @@ function getDateAgo(date, days) {
   }
 
 // https://ko.javascript.info/date에서 공부하고 나온 문제 풀어보는데 아직 너무 어렵게 느껴짐;;
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+//  date를 기준으로 days일 전 '일’을 반환하는 함수
+function getDateAgo(date, days){
+    date.setDate(date.getDay() - days);
+    return date.getDay();
+}
+
+//특정 달의 마지막 일을 반환하는 함수
+function getLastDayOfMonth(year, month){
+    let date = new Date(year, month + 1, 0);
+    return date.getDate();
+}
+
+//오늘 하루가 시작된 이후 몇 초나 지났는지 반환하는 함수
+function getSecondsToday(){
+    let now = new Date();
+    let today = new Date(now.getFullYear(),now.getMonth(),now.getDate());
+
+    let diff = now - today;
+    return Math.round(diff / 1000); // Math.round: 주어진 숫자를 가장 가까운 정수로 반올림해줌
+}                                   // diff / 1000: 밀리초를 초로 변환
+
+alert (getSecondsToday());
+
+//오늘 하루 경과 시간, 분, 초를 초로 변환하는 함수 
+function getSecondsTodayy(){
+    let d = new Date();
+
+    return d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds;
+}
+
+//오늘 하루가 끝날 때까지 남은 초를 반환해주는 함수 
+//오늘 하루가 끝날 때까지 남은 밀리초를 구하려면 '내일 00시 00분 00초’에서 현재 날짜를 빼면 됩니다.
+function getSecondsToTomorrow(){
+    let now = new Date();
+
+    // 내일 날짜
+    let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
+
+    let diff = tomorrow - now; // 차이(ms)
+    return Math.round(diff / 1000); // 초로 변환
+
+}
+
+// 주어진 date 값에 대해 현재 시간과의 차이를 계산하고,
+// 그 차이에 따라 적절한 형식으로 날짜를 출력하는 함수
+
+// 5분 전에 작성된 댓글 , 유튜브 "5분 전" 이런거
+function formatDate(date) {
+    
+    // "현재"  
+    let diff = new Date() - date; // 차이(ms)
+
+    if (diff < 1000) { // 차이가 1초 미만이라면
+        return '현재';
+      }
+
+    // "n초 전"  
+    let sec = Math.floor(diff / 1000); // 차이를 초로 변환     floor:내림 처리
+
+    if (sec < 60) {
+        return sec + '초 전';
+      }
+
+    // "n분 전"
+    let min = Math.floor(diff / 60000); // 차이를 분으로 변환      1000 * 60
+
+    if (min < 60) {
+        return min + '분 전';
+      }
+
+    // 어제를 나타내는 날짜를 "일.월.연 시:분" 포맷으로 출력
+    let d = date;
+    d = [
+      '0' + d.getDate(),
+      '0' + (d.getMonth() + 1),
+      '' + d.getFullYear(),
+      '0' + d.getHours(),
+      '0' + d.getMinutes()
+    ].map(item => item.slice(-2)); // 모든 컴포넌트의 마지막 숫자 2개를 가져옴
+
+    // .map(): 배열의 각 요소에 대해 지정된 작업을 수행하여 새로운 배열을 반환하는 메서드
+    // slice(-2): 각 컴포넌트의 마지막 두 문자를 잘라내는 역할
+
+    return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
+    
+    // 1,2,3 번째 배열 사이에 . + 3번째 이후로 잘린 배열 사이에 :
+    // xx.xx.xx xx:xx
+
+}
+
+
+// 전반적인 문법은 이해가 가는데 활용할때 헷갈리는 점이 좀 있다. 내일은 달력에 쓰인 코드를 이해해봐야겠다.
