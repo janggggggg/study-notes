@@ -43,7 +43,7 @@ function handleSymbol(symbol){
     }
 }
 
-// 일단 코드를 직접 짤 정돈 아니여서 코드를 가져와서 한땀한땀 이해하는중.
+일단 코드를 직접 짤 정돈 아니여서 코드를 가져와서 한땀한땀 이해하는중.
 
 
 
@@ -103,7 +103,7 @@ init();     // 초기화 시점 차이: let runningTotal = 0;, let buffer = "0";
 //  초기화 시점에서 별도로 분리하여 init() 함수로 처리하는 것이 적합합니다.
 
 
-// 계산기 코드를 이해는 다 했지만 혼자만들어보는 과정이 필요할듯싶다.
+계산기 코드를 이해는 다 했지만 혼자만들어보는 과정이 필요할듯싶다.
 
 
 
@@ -112,9 +112,9 @@ init();     // 초기화 시점 차이: let runningTotal = 0;, let buffer = "0";
 
 
 
-// 계산기 코드를 혼자서 다시 처음부터 짜보는데 함수에 이름을 설정하는것과 어떤 코드를 먼저 써나가야 할지가 어려웠다 . 
-// 첫번째 다시 만들땐 막힐때마다 다시 보면서 다 짰고 두번째로 다시 짜보는중
-// 특히나 어려웠던게 현재값을 숫자로 변환하여 계산하고 = 으로 출력하는 과정까지가 어지러웠다. 그냥 계속 왜 이런구조여야 하는지 찾아보며 깨닫는중.
+계산기 코드를 혼자서 다시 처음부터 짜보는데 함수에 이름을 설정하는것과 어떤 코드를 먼저 써나가야 할지가 어려웠다 . 
+첫번째 다시 만들땐 막힐때마다 다시 보면서 다 짰고 두번째로 다시 짜보는중
+특히나 어려웠던게 현재값을 숫자로 변환하여 계산하고 = 으로 출력하는 과정까지가 어지러웠다. 그냥 계속 왜 이런구조여야 하는지 찾아보며 깨닫는중.
 
 let runningTotal = 0;
 let previousOperator;
@@ -169,7 +169,7 @@ function handleSymbol(symbol){
 
 
 
-// 달력을 구현하려고 달력 코드를 보는데 답이없어서 달력관련 코드들을 찾아 공부중.
+달력을 구현하려고 달력 코드를 보는데 답이없어서 달력관련 코드들을 찾아 공부중.
 
 
 let date = new Date(2012,1,20,3,12);
@@ -198,7 +198,7 @@ function getDateAgo(date, days) {
     return date.getDate();
   }
 
-// https://ko.javascript.info/date에서 공부하고 나온 문제 풀어보는데 아직 너무 어렵게 느껴짐;;
+https://ko.javascript.info/date에서 공부하고 나온 문제 풀어보는데 아직 너무 어렵게 느껴짐;;
 
 
 
@@ -299,4 +299,224 @@ function formatDate(date) {
 }
 
 
-// 전반적인 문법은 이해가 가는데 활용할때 헷갈리는 점이 좀 있다. 내일은 달력에 쓰인 코드를 이해해봐야겠다.
+전반적인 문법은 이해가 가는데 활용할때 헷갈리는 점이 좀 있다. 내일은 달력에 쓰인 코드를 이해해봐야겠다.
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+달력을 만드는데 필요한 주석만 남겨두고 어떤 코드들을 적어 나가야할지 연습을 하는중
+전체적인 코드를 한번씩 이해하고 그 다음에 만들어 나가려하니 생각보다 괜찮은거같다 이 연습법
+어째서 이런 구조여야하는지부터 조금씩 알아가지는게 신기했다.
+
+// 페이지 로드 시 generateCalendar 함수 호출
+window.onload = function(){
+  generateCalendar();
+}
+
+// 달력을 생성하는 함수
+function generateCalendar(){
+  const calendar = document.getElementById('calendar');
+  // 현재 날짜, 월, 년을 얻기 위한 새로운 Date 객체 생성
+  const currentDate = new Date();
+  const year = new Date(currentDate.getFullYear);
+  const month = new Date(currentDate.getDate);
+    // 해당 월의 첫 번째 날과 마지막 날 계산
+  const firstDayOfMonth = new Date(year, month, 1);
+  const lastDayOfMonth = new Date(year, month+1, 0);
+    // 해당 월 첫날의 요일 계산
+    const firstDayOfWeek = firstDayOfMonth.getDay;
+    const totalDays = lastDayOfMonth.getDay;
+      // 첫 번째 날 전에 빈 div 요소를 추가
+    for(let i = 0; i < firstDayOfWeek; i++){
+        let blankDay = document.createElement('div');
+        calendar.appendChild(blankDay);
+    }
+      // 해당 월의 각 날짜에 대해 div 요소를 추가 
+    for(let day = 1; day <= totalDays; day++){
+      let daySquare = document.createElement('div');
+      daySquare.className = "calendar-day";
+      daySquare.textContent = day;
+      daySquare.id = `day-${day}`;
+      calendar.appendChild(daySquare);
+    }
+}
+
+// 할 일 추가 모달을 보여주는 함수
+function showAddTaskModal(){
+  document.getElementById('addTaskModal').style.display = 'block';
+}
+
+// 할 일 추가 모달을 닫는 함수
+function closeAddTaskModal(){
+  document.getElementById('addTaskModal').style.display = 'none';
+}
+
+// 할 일을 삭제하는 함수
+function deleteTask(taskElement){
+  // 삭제 확인 대화상자
+  if(confirm("할 일을 삭제하시겠습니까?")){
+    // 사용자가 확인하면, 해당 할 일 요소를 부모에서 제거
+    taskElement.parentNode.removeChild(taskElement);
+  }
+}
+
+// 할 일을 수정하는 함수
+function editTask(taskElement){
+  // 현재 할 일 설명을 기본값으로 수정할 수 있는 팝업 표시
+  const newTaskDesc = prompt("수정하시겠습니까?",taskElement.textContent);
+    // 사용자가 새로운 설명을 입력했는지, 그리고 그 내용이 비어 있지 않은지 확인
+    if( newTaskDesc !== null & newTaskDesc.trim() !== "" ){
+      // 할 일 요소의 텍스트를 새로운 설명으로 업데이트
+      taskElement.textContent = newTaskDesc;
+    }
+}
+
+
+// 할 일을 추가하는 함수
+function addTask(){
+  // 입력 필드에서 날짜와 설명을 가져오기
+  const taskDate = new Date(document.getElementById('task-date').value);
+  const taskDesc = document.getElementById('task-desc').value.trim();
+    // 날짜와 설명 유효성 검사
+    if( taskDesc && !isNaN(taskDate.getDate()) ){
+      // 달력의 날짜들 가져오기
+      const day = document.getElementById('calendar');
+    }
+}
+
+      // 달력 날짜들을 반복
+
+          // 날짜가 할 일 날짜와 일치하는지 확인
+
+              // 할 일 요소 생성
+  
+
+              // 마우스 오른쪽 클릭 시 할 일 삭제
+
+
+              // 마우스 왼쪽 클릭 시 할 일 수정
+
+
+              // 해당 날짜에 할 일 요소 추가
+
+      // 유효하지 않은 날짜나 설명에 대한 경고
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+달력에 쓰인 모든 코드구조는 이해했지만 다시 혼자서 만들어보는 시간을 가졌는데 주석이 없으면 절때 못만들거같다
+한번 코드 쫙 짜고 주석을 다시 편하게 짓고 코드를 그거에 맞춰서 다시 짰다.
+
+
+
+// // 로딩시 함수 generateCalendar() 실행하는 코드
+// window.onload function(){
+//   generateCalendar();
+// }
+
+// // generateCalendar() 캘린더의 날짜들을 구현하는 함수
+// function generateCalendar(){
+//   // 캘린더 id 가져오기
+//   const calendar = document.getElementById('calendar');
+//   // 현재날짜, 년, 월 가져오기 (currentDate)
+//   const currentDate = new Date();
+//   const month = currentDate.getMonth;
+//   const year = currentDate.getFullYear;
+//   // 현재달의 첫번째날과 마지막날 가져오기 firstDayOfMonth , lastDayOfMonth
+//   const firstDayOfMonth = new Date(year, month, 1);
+//   const lastDayOfMonth = new Date(year, month+1, 0);
+//     //해당 월 첫날의 요일, 마지막날의 요일 가져오기  firstDayOfWeek, totalDays
+//     const firstDayOfWeek = firstDayOfMonth.getDay;
+//     const totalDays = lastDayOfMonth.getDay;
+//     //첫번째날 전에 빈칸들 만들기 (blankDay)
+//     for(let i = 0; i < firstDayOfWeek; i++){
+//       const blankDay = document.createElement('div');
+//       calendar.appendChild(blankDay);
+//     }
+//     //현재달의 총 날짜칸들 만들기 (daySquare)
+//     for(let day = 1; day <= totalDays; day++){
+//       const daySquare = document.createElement('div');
+//       daySquare.className = "calendar-day"
+//       daySquare.textContent = day;
+//     }
+// }
+
+// // showAddTaskModal() 창을 띄우는 함수
+// function showAddTaskModal(){
+//   document.getElementById('addTaskModal').style.display = 'block';
+// }
+
+// // closeAddTaskModal() 창을 닫는 함수
+// function closeAddTaskModal(){
+//   document.getElementById('addTaskModal').style.display = 'none';
+// }
+
+// // deleteTask(taskElement) 할 일을 삭제하는 함수 
+// function deleteTask(taskElement){
+//   // 삭제 확인 대화상자
+//   if(confirm('삭제하시겠습니까?')){
+//     // 확인 되면 부모로부터 삭제
+//     taskElement.parentsNode.removeChild(taskElement);
+//   }
+// }
+// // editTask(taskElement) 할 일을 수정하는 함수
+// function editTask(taskElement){
+//   // newTaskDesc로 현재 내용은 남겨두고 프롬프티 띄우기
+//   const newTaskDesc = prompt('수정 할 내용을 입력하세요',taskElement.textContent);
+//     // 새로운 내용이 없거나 공백이없이 비어있지않으면
+//     if(newTaskDesc !== null & newTaskDesc.trim() !== "")
+//       // 이전 내용에 덮어씌우기
+//       taskElement.textContent = newTaskDesc;
+// }
+
+
+// // addTask() 할 일을 추가하는 함수
+// function addTask(){
+//   // taskDate,taskDesc에 내용 가져오기
+//   const taskDate = new Date(document.getElementById('task-date').value);
+//   const taskDesc = document.getElementById('task-desc').value.trim();
+//     // 내용이 둘다 올바르게 들어가있으면
+//     if(taskDesc && !isNaN(taskDate.getDate())){
+//       // calendarDays 달력의 날짜들 가져오기
+//       const calendarDays = document.getElementById('calendar').children;
+//           // day 날짜들의 요일을 반복문으로 넣어주기
+//           for(let i = 0; i < calendarDays.length; i++){
+//             const day = calendarDays[i];
+//             // 날짜들의 요일과 taskDate의 날이 같다면
+//             if(parseInt(day.textContent) === taskDate.getDate()){
+//               // taskElement(내용과 내용물 들어갈 박스 만들기)  
+//               const taskElement = document.createElement('div');
+//               taskElement.className = "task";
+//               taskElement.textContent = taskDesc;
+//               // 내용물 우클릭시 삭제하는 함수실행 contextmenu
+//               taskElement.addEventListener('contextmenu',function(event){
+//                 event.preventDefault;
+//                 deleteTask(taskElement);
+//               })
+//               // 내용물 좌클릭시 수정하는 함수실행 
+//               taskElement.addEventListener('click',function(event){
+//                 editTask(taskElement);
+//               })
+//               // 만들어진 내용물을 날짜안에 자식으로 넣기
+//               day.appendChild(taskElement);
+//               break;
+//             }
+//             // 위에 내용이 처리되었으니 닫는 함수실행
+//             closeAddTaskModal();
+//           }
+//     // 내용이 한쪽이라도 없으면
+//     }else{
+//       alert('내용을 입력하거나 날짜를 선택해주세요');
+//     }
+// }
