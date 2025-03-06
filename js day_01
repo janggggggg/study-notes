@@ -112,3 +112,57 @@ init();     // 초기화 시점 차이: let runningTotal = 0;, let buffer = "0";
 
 
 
+// 계산기 코드를 혼자서 다시 처음부터 짜보는데 함수에 이름을 설정하는것과 어떤 코드를 먼저 써나가야 할지가 어려웠다 . 
+// 첫번째 다시 만들땐 막힐때마다 다시 보면서 다 짰고 두번째로 다시 짜보는중
+// 특히나 어려웠던게 현재값을 숫자로 변환하여 계산하고 = 으로 출력하는 과정까지가 어지러웠다. 그냥 계속 왜 이런구조여야 하는지 찾아보며 깨닫는중.
+
+let runningTotal = 0;
+let previousOperator;
+let buffer = '0';
+
+
+
+function init(){
+    document.querySelector('.calc-buttons').addEventListener('click', function(event){
+        buttonClick(event.target.innerText);
+    })
+}
+
+const screen = document.querySelector('.screen')
+
+function buttonClick(value){
+    if(isNaN(value)){
+        handleSymbol(value);
+    }else{
+        handleNumber(value);
+    }
+    screen.innerText = buffer;
+}
+
+function handleNumber(numberString){
+    if(buffer === '0'){
+        buffer = numberString;
+    }else{
+        buffer += numberString;
+    }
+}
+
+function handleSymbol(symbol){
+    switch(symbol){
+        case 'C':
+            runningTotal = 0;
+            buffer = '0';
+            break;
+        case '=':
+            if(previousOperator === null){
+                return;
+            }
+            flushOperation(parseInt(buffer));
+            previousOperator = null;
+            buffer = '0';
+    }
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
